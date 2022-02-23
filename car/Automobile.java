@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class Automobile{
     Scanner input = new Scanner(System.in);
     private boolean stato;
-    private double velocita, serbatoio, consumi;
+    private double serbatoio, consumi;
+    private int velocita;
     private String modello, casaAutomobilistica, colore, targa;
     private String paintjob;
 
@@ -33,7 +34,7 @@ public class Automobile{
     public void setConsumi(double consumi) {this.consumi = consumi;}
     public void setPaintjob(String paintjob) {this.paintjob = paintjob;}
     public boolean getStato() {return stato;}
-    public double getVelocita() {return velocita;}
+    public int getVelocita() {return velocita;}
     public String getModello() {return modello;}
     public String getCasa_automobilistica() {return casaAutomobilistica;}
     public String getColore() {return colore;}
@@ -61,7 +62,7 @@ public class Automobile{
     {
         char scelta;
 
-        if(velocita >= 10)
+        if(velocita > 10 && getStato())
         {
             System.out.print("L'auto e' ancora in movimento, sicuro di volerla spegnere?(y/n): ");
             scelta = input.next().charAt(0);
@@ -84,22 +85,27 @@ public class Automobile{
         }
     }
 
-    public void accellera(double kmh)
+    public void accellera()
     {
-        if(getStato() && velocita <= 420)
+        if(getStato() && velocita<=420 && getSerbatoio()>=1)
         {
-           for(int i = 0; i<kmh ; i++)
+           for(int i = 0; i<5 ; i++)
            {
                 velocita++;
            }
            
            if(velocita > 420)
-                velocita = 420;
-
+           {
+               System.out.println("Hai raggiunto la velocita' massima");
+               velocita = 420;
+           }
+               
            System.out.println("Velocita attuale: " + getVelocita() + "\n");
         }
         else if(!getStato())
             System.out.println("L'auto e' spenta, accendila prima\n");
+        else if(getSerbatoio()<1)
+            System.out.println("L'auto non ha benzina, fai rifornimento prima\n");
         else
             System.out.println("L'auto ha raggiunto la sua velocita massima e non può accelerare oltre\n");
 
@@ -121,13 +127,19 @@ public class Automobile{
         else
             System.out.println("L'auto e' gia' ferma\n");
     }
+    public void stop()
+    {
+        velocita = 0;
+        System.out.println("Velocita attuale: " + getVelocita() + "\n");
+    }
 
     public void viaggio(double km)
     {
         if(serbatoio - km/consumi <= 0)
-            System.out.println("Benzina insufficente per arrivare a destinazione, fai rifornimento prima");
+            System.out.println("Benzina insufficente per arrivare a destinazione, fai rifornimento prima\n");
 
-        System.out.println("Hai benzina a sufficienza per arrivare a destinazione");
+        System.out.println("Hai benzina a sufficienza per arrivare a destinazione\n");
+        serbatoio -= km/consumi;
     }
 
     public String toString()

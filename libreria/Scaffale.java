@@ -1,7 +1,7 @@
 package libreria;
 
 public class Scaffale{
-    final int MAX_RIPIANI = 5;
+    private final int MAX_RIPIANI = 5;
     private Mensola ripiani[];
 
     //costruttore

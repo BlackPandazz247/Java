@@ -1,7 +1,7 @@
 package libreria;
 
 public class Mensola{
-    final int MAX_VOLUMI = 15;
+    private final int MAX_VOLUMI = 15;
     private Libro mensola[];
 
     //costruttore, inizializza il vettore
