@@ -5,7 +5,7 @@ public class Libretto{
     //attributi
     private int matricola;
     private String cognome,nome;
-    private int n_esami;
+    private int esamiSostenuti;
     private ArrayList<Esame> e = new ArrayList<Esame>();  //array dinamico che salva gli esami sostenuti con relativa data e voto
 
 
@@ -15,7 +15,7 @@ public class Libretto{
         setMatricola(matricola);
         setCognome(cognome);
         setNome(nome);
-        n_esami = 0;
+        esamiSostenuti = 0;
     }
 
     //get/set
@@ -25,24 +25,24 @@ public class Libretto{
     public String getCognome() {return cognome;}
     private void setNome(String nome) {this.nome = nome;}
     public String getNome() {return nome;}
-    public int esamiDati() {return n_esami;}
+    public int esamiDati() {return esamiSostenuti;}
 
     //toString
     public String toString()
     {
-        String s = "Matricola["+ matricola +"]: "+ cognome +" "+ nome +". Ha sostenuto "+ n_esami +" esami: ";
+        String s = "";
         for(int i=0; i<e.size(); i++)
         {
             s += "\n\t"+ e.get(i).toString();
         }
-        return s +"\n";
+        return s;
     }
 
     //metodo che inserisce nell'array un esame e incrementa il numero di esami di 1
     public void scrivi(String esame, String data, int voto)
     {
         e.add(new Esame(esame, data, voto));
-        n_esami++;
+        esamiSostenuti++;
     }
 
     //metodo che dato in input il nome di un esame ritorna il relativo voto
