@@ -24,10 +24,6 @@ public class Furgone{
     }
 
     public void setCodice(int codice) {this.codice = codice;}
-    private void setTarga(String targa) {this.targa = targa;}
-    private void setMarca(String marca) {this.marca = marca;}
-    private void setModello(String modello) {this.modello = modello;}
-    private void setPosti(int posti) {this.nPosti = posti;}
     public int getCodice() {return codice;}
     public String getTarga() {return targa;}
     public String getMarca() {return marca;}
